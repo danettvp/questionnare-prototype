@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Leak Prototype</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="welcome" class="screen active">
+    <h1>Welcome</h1>
+    <p>Answer questions to create your blob</p>
+    <button onclick="next('q1')">Start</button>
+  </div>
+
+<div id="q1" class="screen">
+  <h2>How often do you share online?</h2>
+  <input type="range" min="0" max="100" id="input1">
+  <button onclick="next('q2')">Next</button>
+</div>
+
+<div id="q2" class="screen">
+  <h2>How private are you?</h2>
+  <input type="range" min="0" max="100" id="input2">
+  <button onclick="next('q3')">Next</button>
+</div>
+
+<div id="q3" class="screen">
+  <h2>How many platforms do you use?</h2>
+  <input type="range" min="0" max="100" id="input3">
+  <button onclick="generateBlob()">Submit</button>
+</div>
+
+<div id="result" class="screen">
+  <h2>Your Data Blob</h2>
+  <div id="blobPreview"></div>
+  <button onclick="sendToTank()">Release</button>
+</div>
+
+<div id="tankScreen" class="screen">
+  <div id="tank"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
