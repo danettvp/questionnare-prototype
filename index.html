@@ -1,45 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data Leak Prototype</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Leak</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div id="welcome" class="screen active">
-    <h1>Welcome</h1>
-    <p>Answer questions to create your blob</p>
-    <button onclick="next('q1')">Start</button>
+<canvas id="bgCanvas"></canvas>
+
+<!-- ── WELCOME ── -->
+<div class="screen active" id="s-welcome">
+  <div class="w-logo">Data Leak</div>
+  <div class="w-title">Your data<br>has a <em>shape.</em></div>
+  <div class="w-divider"></div>
+  <div class="w-body">
+    You share. You connect. You live online.<br>
+    <strong>That's not the problem.</strong><br>
+    Not knowing where it goes — that's what we want to change.
   </div>
-
-<div id="q1" class="screen">
-  <h2>How often do you share online?</h2>
-  <input type="range" min="0" max="100" id="input1">
-  <button onclick="next('q2')">Next</button>
+  <button class="btn" id="btnStart">
+    <span class="btn-label">Create my fish &nbsp;→</span>
+  </button>
 </div>
 
-<div id="q2" class="screen">
-  <h2>How private are you?</h2>
-  <input type="range" min="0" max="100" id="input2">
-  <button onclick="next('q3')">Next</button>
+<!-- ── QUESTION ── -->
+<div class="screen" id="s-question">
+  <div class="q-shell">
+    <div class="q-topbar">
+      <div class="q-brand">Data Leak</div>
+      <div class="q-counter" id="qCounter">01 / 04</div>
+    </div>
+    <div class="q-progress" id="qProgress"></div>
+    <div class="q-num" id="qNum">Question 01</div>
+    <div class="q-text" id="qText"></div>
+    <div class="q-sub" id="qSub"></div>
+    <div class="q-options" id="qOptions"></div>
+    <div class="q-insight" id="qInsight">
+      <div class="qi-label">Did you know</div>
+      <div class="qi-text" id="qInsightText"></div>
+    </div>
+    <div class="q-footer">
+      <div class="fish-forming">
+        <canvas id="miniCanvas"></canvas>
+        <div class="fish-forming-lbl">your fish, forming</div>
+      </div>
+      <button class="btn-next" id="btnNext">
+        <span id="btnNextTxt">Next &nbsp;→</span>
+      </button>
+    </div>
+  </div>
 </div>
 
-<div id="q3" class="screen">
-  <h2>How many platforms do you use?</h2>
-  <input type="range" min="0" max="100" id="input3">
-  <button onclick="generateBlob()">Submit</button>
+<!-- ── BUILDING ── -->
+<div class="screen" id="s-building">
+  <div class="build-label">Growing your fish</div>
+  <canvas id="buildCanvas"></canvas>
+  <div class="build-status" id="buildStatus">Reading your answers…</div>
 </div>
 
-<div id="result" class="screen">
-  <h2>Your Data Blob</h2>
-  <div id="blobPreview"></div>
-  <button onclick="sendToTank()">Release</button>
+<!-- ── REVEAL ── -->
+<div class="screen" id="s-reveal">
+  <div class="rv-eyebrow">Meet your data fish</div>
+  <div class="rv-title" id="rvTitle"></div>
+  <div class="rv-subtitle">Shaped by your answers. Uniquely yours.</div>
+  <div class="rv-fish-wrap">
+    <canvas id="revealCanvas"></canvas>
+  </div>
+  <div class="rv-traits" id="rvTraits"></div>
+  <div class="rv-msg" id="rvMsg"></div>
+  <div class="rv-release-wrap">
+    <button class="btn-release" id="btnRelease">
+      <span>Release into the tank &nbsp;↗</span>
+    </button>
+  </div>
 </div>
 
-<div id="tankScreen" class="screen">
-  <div id="tank"></div>
+<!-- ── RELEASED ── -->
+<div class="screen" id="s-released">
+  <div class="rel-title">Your fish<br><em>is free.</em></div>
+  <div class="rel-sub">
+    It's swimming with the others now —<br>
+    each one a different story about life online.
+  </div>
+  <div class="rel-thesis">Your data tells a story. Make sure it's one you chose to tell.</div>
+  <button class="rel-again" id="btnAgain">Start again ↺</button>
 </div>
 
 <script src="script.js"></script>
