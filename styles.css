@@ -130,6 +130,12 @@ html, body {
 }
 .btn-label { position: relative; z-index: 1; }
 
+#btnTank {
+  margin-top: 10px;
+  color: var(--ink);
+  border: 0.1px solid var(--ink);
+}
+
 /* ══════════════════════════════════════
    QUESTION
 ══════════════════════════════════════ */

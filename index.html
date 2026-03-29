@@ -21,8 +21,16 @@
     Not knowing where it goes — that's what we want to change.
   </div>
   <button class="btn" id="btnStart">
-    <span class="btn-label">Create my fish &nbsp;→</span>
+    <span class="btn-label">Create my fish</span>
   </button>
+
+  <!-- View Tank -->
+  <a href="tank.html">
+    <button class="btn" id="btnTank">
+      <span class="btn-label">View Tank</span>
+    </button>
+  </a>
+
 </div>
 
 <!-- ── QUESTION ── -->
@@ -88,6 +96,33 @@
   <button class="rel-again" id="btnAgain">Start again ↺</button>
 </div>
 
-<script src="script.js"></script>
+<!--
+  Firebase must use type="module".
+  We initialise it here and expose window.__db,
+  then dynamically append script.js so it loads after __db is ready.
+-->
+<script type="module">
+  import { initializeApp }  from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+  import { getFirestore }   from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey:            "AIzaSyDYyK21_8Wv4CfJMCaZQ4WwVaOot56jklQ",
+    authDomain:        "data-leak-97bd3.firebaseapp.com",
+    projectId:         "data-leak-97bd3",
+    storageBucket:     "data-leak-97bd3.firebasestorage.app",
+    messagingSenderId: "717887614183",
+    appId:             "1:717887614183:web:70abdc99d605c46d394642",
+    measurementId:     "G-EVYM1TQSBY"
+  };
+
+  const app    = initializeApp(firebaseConfig);
+  window.__db  = getFirestore(app);   // script.js reads this as window.__db
+
+  // Dynamically load script.js only after __db exists
+  const s  = document.createElement('script');
+  s.src    = 'script.js';
+  document.body.appendChild(s);
+</script>
+
 </body>
 </html>
